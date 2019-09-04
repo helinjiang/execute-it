@@ -1,8 +1,8 @@
 {
   "name": "execute-it",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Execute file and return result",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "babel src/ --out-dir lib/",
