@@ -17,5 +17,6 @@ function read(filePath) {
 }
 
 module.exports = {
-    read
+    read,
+    yaml
 };
