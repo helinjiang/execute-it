@@ -8,7 +8,14 @@
     "build": "babel src/ --out-dir lib/",
     "watch": "npm run build -- --watch",
     "test": "node ./node_modules/mocha/bin/_mocha",
-    "eslint": "eslint src/"
+    "eslint": "eslint src/",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/*.{js,jsx}": [
+      "eslint",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -33,7 +40,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.2.0",
-    "eslint": "^6.3.0",
+    "eslint": "^5.16.0",
+    "lint-staged": "^9.2.5",
     "mocha": "^6.2.0"
   }
 }
