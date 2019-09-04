@@ -2,11 +2,11 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const readYaml = require('../../../src/util/yaml');
+const execYaml = require('../../../lib/util/yaml');
 
 describe('./util/yaml.js', function () {
     it('check read .devops.yml', function () {
-        return readYaml.read(path.join(__dirname, '../../fixtures/config/.devops.yml'))
+        return execYaml.read(path.join(__dirname, '../../fixtures/.devops.yml'))
             .then((data) => {
                 expect(data).to.eql({
                     enable_test: true,
@@ -36,19 +36,6 @@ describe('./util/yaml.js', function () {
                         'target': '',
                         'url': ''
                     }
-                });
-            });
-    });
-
-    it('check read .devops-with-include.yml', function () {
-        return readYaml.read(path.join(__dirname, '../../fixtures/config/.devops-with-include.yml'))
-            .then((data) => {
-                expect(data).to.eql({
-                    enable_test: true,
-                    group: 'ivweb',
-                    count: 10086,
-                    msg: '.devops-with-include.yml',
-                    include: 'include-config.js'
                 });
             });
     });

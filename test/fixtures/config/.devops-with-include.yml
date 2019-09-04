@@ -1,5 +1,0 @@
-enable_test: true
-group: ivweb
-count: 10086
-msg: .devops-with-include.yml
-include: include-config.js

@@ -2,11 +2,11 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const readJavascript = require('../../../src/util/javascript');
+const execJavascript = require('../../../lib/util/javascript');
 
 describe('./util/javascript.js', function () {
     it('check read devops.js', function () {
-        return readJavascript.read(path.join(__dirname, '../../fixtures/config/devops.js'))
+        return execJavascript.read(path.join(__dirname, '../../fixtures/devops.js'))
             .then((data) => {
                 expect(data).to.eql({
                     enable_test: true,
@@ -41,7 +41,7 @@ describe('./util/javascript.js', function () {
     });
 
     it('check read devops-use-function.js', function () {
-        return readJavascript.read(path.join(__dirname, '../../fixtures/config/devops-use-function.js'), {
+        return execJavascript.read(path.join(__dirname, '../../fixtures/devops-use-function.js'), {
             group: 'ivweb-init',
             other: 'other'
         })
@@ -80,7 +80,7 @@ describe('./util/javascript.js', function () {
     });
 
     it('check read devops-use-promise.js', function () {
-        return readJavascript.read(path.join(__dirname, '../../fixtures/config/devops-use-promise.js'), {
+        return execJavascript.read(path.join(__dirname, '../../fixtures/devops-use-promise.js'), {
             group: 'ivweb-init',
             other: 'other'
         })
@@ -114,21 +114,6 @@ describe('./util/javascript.js', function () {
                         'target': '',
                         'url': ''
                     }
-                });
-            });
-    });
-
-    it('check read include-config.js', function () {
-        return readJavascript.read(path.join(__dirname, '../../fixtures/config/include-config.js'), {
-            group: 'ivweb-init',
-            other: 'other'
-        })
-            .then((data) => {
-                expect(data).to.eql({
-                    custom_msg: 'custom_msg',
-                    group: 'ivweb-include',
-                    msg: 'include.js',
-                    other: 'other'
                 });
             });
     });
