@@ -31,7 +31,7 @@ function getContent(filePath, ...props) {
 
 module.exports = {
     getContent,
-    readJavascript: execJavascript,
-    readJson: execJson,
-    readYaml: execYaml
+    execJavascript,
+    execJson,
+    execYaml
 };

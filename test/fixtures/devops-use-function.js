@@ -1,4 +1,4 @@
-module.exports = (inputParams, nodejsAtomSdk) => {
+module.exports = (inputParams) => {
     return {
         other: inputParams && inputParams.other || 'self_other',
         enable_test: true,

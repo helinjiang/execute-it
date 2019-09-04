@@ -1,4 +1,4 @@
-module.exports = (inputParams, nodejsAtomSdk) => {
+module.exports = (inputParams) => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({

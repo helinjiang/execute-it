@@ -2,11 +2,11 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const readJson = require('../../../src/util/json');
+const execJson = require('../../../lib/util/json');
 
 describe('./util/json.js', function () {
     it('check read devops.json', function () {
-        return readJson.read(path.join(__dirname, '../../fixtures/config/devops.json'))
+        return execJson.read(path.join(__dirname, '../../fixtures/devops.json'))
             .then((data) => {
                 expect(data).to.eql({
                     enable_test: true,
