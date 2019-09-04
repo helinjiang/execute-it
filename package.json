@@ -4,7 +4,11 @@
   "description": "Execute file and return result",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "npm run build",
+    "build": "babel src/ --out-dir lib/",
+    "watch": "npm run build -- --watch",
+    "test": "node ./node_modules/mocha/bin/_mocha",
+    "eslint": "eslint src/"
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,18 @@
   "bugs": {
     "url": "https://github.com/helinjiang/execute-it/issues"
   },
-  "homepage": "https://github.com/helinjiang/execute-it#readme"
+  "homepage": "https://github.com/helinjiang/execute-it#readme",
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.2.0",
+    "eslint": "^6.3.0",
+    "mocha": "^6.2.0"
+  }
 }
