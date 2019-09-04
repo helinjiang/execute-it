@@ -1,0 +1,22 @@
+{
+  "name": "execute-it",
+  "version": "0.1.0",
+  "description": "Execute file and return result",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helinjiang/execute-it.git"
+  },
+  "keywords": [
+    "execute"
+  ],
+  "author": "helinjiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/helinjiang/execute-it/issues"
+  },
+  "homepage": "https://github.com/helinjiang/execute-it#readme"
+}
