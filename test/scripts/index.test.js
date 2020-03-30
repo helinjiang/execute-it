@@ -2,10 +2,10 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const executeIt = require('../../lib');
+const executeIt = require('../../src');
 
-describe('./lib', function () {
-    describe('check getContent()', function () {
+describe('./index.js', function () {
+    describe('check getContent(filePath, ...props)', function () {
         it('check read .devops.yml', function () {
             return executeIt.getContent(path.join(__dirname, '../fixtures/.devops.yml'))
                 .then((data) => {
@@ -186,6 +186,23 @@ describe('./lib', function () {
                             'url': ''
                         }
                     });
+                });
+        });
+    });
+
+    describe('check evaluateJSSourceTextModule(sourceText, ...props) ', function () {
+        it('check CommonJS module', function () {
+            const code = `
+ module.exports = function (name, opts) {
+    return 'hello, ' + name + '! I am ' + opts.age;
+};
+            `;
+
+            return executeIt.evaluateJSSourceTextModule(code, 'execute-it', {
+                age: 123
+            })
+                .then((data) => {
+                    expect(data).to.equal('hello, execute-it! I am 123');
                 });
         });
     });

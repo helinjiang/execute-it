@@ -1,4 +1,5 @@
 const path = require('path');
+const fse = require('fs-extra');
 
 const execJavascript = require('./util/javascript');
 const execJson = require('./util/json');
@@ -29,9 +30,41 @@ function getContent(filePath, ...props) {
     }
 }
 
+/**
+ * 执行 js module 源码，获得执行结果
+ *
+ * @param {String} sourceText js module 源码
+ * @param {Array} props 其他额外的参数
+ * @return {Promise}
+ * @author linjianghe
+ */
+function evaluateJSSourceTextModule(sourceText, ...props) {
+    // 保存到一个临时目录
+    const tmpSaveFilePath = path.join(__dirname, `../tmp/t_${Date.now()}.js`);
+
+    // 保存
+    fse.outputFileSync(tmpSaveFilePath, sourceText);
+
+    // 获取执行结果
+    return execJavascript.read(tmpSaveFilePath, ...props)
+        .then((data) => {
+            // 清理
+            fse.removeSync(tmpSaveFilePath);
+
+            return data;
+        })
+        .catch((err) => {
+            // 清理
+            fse.removeSync(tmpSaveFilePath);
+
+            return Promise.reject(err);
+        });
+}
+
 module.exports = {
     getContent,
     execJavascript,
     execJson,
-    execYaml
+    execYaml,
+    evaluateJSSourceTextModule
 };
