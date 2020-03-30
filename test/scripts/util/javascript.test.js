@@ -2,7 +2,7 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const execJavascript = require('../../../lib/util/javascript');
+const execJavascript = require('../../../src/util/javascript');
 
 describe('./util/javascript.js', function () {
     it('check read devops.js', function () {

@@ -1,7 +1,7 @@
 {
   "name": "execute-it",
-  "version": "0.1.2",
-  "description": "Execute file and return result",
+  "version": "0.2.1",
+  "description": "Execute file or code and return result",
   "main": "lib/index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/helinjiang/execute-it#readme",
   "dependencies": {
+    "fs-extra": "^9.0.0",
     "js-yaml": "^3.13.1"
   },
   "devDependencies": {

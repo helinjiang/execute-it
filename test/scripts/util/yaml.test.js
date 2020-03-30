@@ -2,7 +2,7 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const execYaml = require('../../../lib/util/yaml');
+const execYaml = require('../../../src/util/yaml');
 
 describe('./util/yaml.js', function () {
     it('check read .devops.yml', function () {

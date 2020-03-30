@@ -2,7 +2,7 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const execJson = require('../../../lib/util/json');
+const execJson = require('../../../src/util/json');
 
 describe('./util/json.js', function () {
     it('check read devops.json', function () {
