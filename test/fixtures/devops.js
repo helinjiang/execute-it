@@ -1,29 +1,27 @@
 module.exports = {
-    enable_test: true,
-    group: 'ivweb',
-    count: 10086,
-    msg: 'devops.js',
-    fake_var: {
-        'type': 'fake_type',
-        'value': 'fake_value'
-    },
-    outVar_1: {
+    'enable_test': true,
+    'group': 'Tencent ivweb team',
+    'author': 'helinjiang',
+    'email': 'onehlj@qq.com',
+    'count': 10086,
+    'outVar_1': {
         'type': 'string',
-        'value': 'testaaaaa'
+        'value': 'Execute file or code and return the result',
+        'path': './path/file'
     },
-    outVar_2: {
+    'outVar_2': {
         'type': 'artifact',
         'value': [
             'file_path_1',
             'file_path_2'
-        ]
-    },
-    outVar_3: {
-        'type': 'report',
-        'reportType': '',
-        'label': '',
-        'path': '',
-        'target': '',
-        'url': ''
+        ],
+        'info': {
+            'field1': 'I am field1',
+            'field2': 'I am field2',
+            'list': [
+                'abc',
+                123
+            ]
+        }
     }
 };
