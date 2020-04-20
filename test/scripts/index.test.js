@@ -10,32 +10,30 @@ describe('./index.js', function () {
             return executeIt.getContent(path.join(__dirname, '../fixtures/.devops.yml'))
                 .then((data) => {
                     expect(data).to.eql({
-                        enable_test: true,
-                        group: 'ivweb',
-                        count: 10086,
-                        msg: '.devops.yml',
-                        fake_var: {
-                            'type': 'fake_type',
-                            'value': 'fake_value'
-                        },
-                        outVar_1: {
+                        'enable_test': true,
+                        'group': 'Tencent ivweb team',
+                        'author': 'helinjiang',
+                        'email': 'onehlj@qq.com',
+                        'count': 10086,
+                        'outVar_1': {
                             'type': 'string',
-                            'value': 'testaaaaa'
+                            'value': 'Execute file or code and return the result',
+                            'path': './path/file'
                         },
-                        outVar_2: {
+                        'outVar_2': {
                             'type': 'artifact',
                             'value': [
                                 'file_path_1',
                                 'file_path_2'
-                            ]
-                        },
-                        outVar_3: {
-                            'type': 'report',
-                            'reportType': '',
-                            'label': '',
-                            'path': '',
-                            'target': '',
-                            'url': ''
+                            ],
+                            'info': {
+                                'field1': 'I am field1',
+                                'field2': 'I am field2',
+                                'list': [
+                                    'abc',
+                                    123
+                                ]
+                            }
                         }
                     });
                 });
@@ -45,32 +43,30 @@ describe('./index.js', function () {
             return executeIt.getContent(path.join(__dirname, '../fixtures/devops.json'))
                 .then((data) => {
                     expect(data).to.eql({
-                        enable_test: true,
-                        group: 'ivweb',
-                        count: 10086,
-                        msg: 'devops.json',
-                        fake_var: {
-                            'type': 'fake_type',
-                            'value': 'fake_value'
-                        },
-                        outVar_1: {
+                        'enable_test': true,
+                        'group': 'Tencent ivweb team',
+                        'author': 'helinjiang',
+                        'email': 'onehlj@qq.com',
+                        'count': 10086,
+                        'outVar_1': {
                             'type': 'string',
-                            'value': 'testaaaaa'
+                            'value': 'Execute file or code and return the result',
+                            'path': './path/file'
                         },
-                        outVar_2: {
+                        'outVar_2': {
                             'type': 'artifact',
                             'value': [
                                 'file_path_1',
                                 'file_path_2'
-                            ]
-                        },
-                        outVar_3: {
-                            'type': 'report',
-                            'reportType': '',
-                            'label': '',
-                            'path': '',
-                            'target': '',
-                            'url': ''
+                            ],
+                            'info': {
+                                'field1': 'I am field1',
+                                'field2': 'I am field2',
+                                'list': [
+                                    'abc',
+                                    123
+                                ]
+                            }
                         }
                     });
                 });
@@ -80,32 +76,30 @@ describe('./index.js', function () {
             return executeIt.getContent(path.join(__dirname, '../fixtures/devops.js'))
                 .then((data) => {
                     expect(data).to.eql({
-                        enable_test: true,
-                        group: 'ivweb',
-                        count: 10086,
-                        msg: 'devops.js',
-                        fake_var: {
-                            'type': 'fake_type',
-                            'value': 'fake_value'
-                        },
-                        outVar_1: {
+                        'enable_test': true,
+                        'group': 'Tencent ivweb team',
+                        'author': 'helinjiang',
+                        'email': 'onehlj@qq.com',
+                        'count': 10086,
+                        'outVar_1': {
                             'type': 'string',
-                            'value': 'testaaaaa'
+                            'value': 'Execute file or code and return the result',
+                            'path': './path/file'
                         },
-                        outVar_2: {
+                        'outVar_2': {
                             'type': 'artifact',
                             'value': [
                                 'file_path_1',
                                 'file_path_2'
-                            ]
-                        },
-                        outVar_3: {
-                            'type': 'report',
-                            'reportType': '',
-                            'label': '',
-                            'path': '',
-                            'target': '',
-                            'url': ''
+                            ],
+                            'info': {
+                                'field1': 'I am field1',
+                                'field2': 'I am field2',
+                                'list': [
+                                    'abc',
+                                    123
+                                ]
+                            }
                         }
                     });
                 });
@@ -118,33 +112,31 @@ describe('./index.js', function () {
             })
                 .then((data) => {
                     expect(data).to.eql({
-                        enable_test: true,
-                        group: 'ivweb',
-                        count: 10086,
-                        msg: 'devops-use-function.js',
-                        other: 'other',
-                        fake_var: {
-                            'type': 'fake_type',
-                            'value': 'fake_value'
-                        },
-                        outVar_1: {
+                        'other': 'other',
+                        'enable_test': true,
+                        'group': 'Tencent ivweb team',
+                        'author': 'helinjiang',
+                        'email': 'onehlj@qq.com',
+                        'count': 10086,
+                        'outVar_1': {
                             'type': 'string',
-                            'value': 'testaaaaa'
+                            'value': 'Execute file or code and return the result',
+                            'path': './path/file'
                         },
-                        outVar_2: {
+                        'outVar_2': {
                             'type': 'artifact',
                             'value': [
                                 'file_path_1',
                                 'file_path_2'
-                            ]
-                        },
-                        outVar_3: {
-                            'type': 'report',
-                            'reportType': '',
-                            'label': '',
-                            'path': '',
-                            'target': '',
-                            'url': ''
+                            ],
+                            'info': {
+                                'field1': 'I am field1',
+                                'field2': 'I am field2',
+                                'list': [
+                                    'abc',
+                                    123
+                                ]
+                            }
                         }
                     });
                 });
@@ -157,33 +149,31 @@ describe('./index.js', function () {
             })
                 .then((data) => {
                     expect(data).to.eql({
-                        enable_test: true,
-                        group: 'ivweb',
-                        count: 10086,
-                        msg: 'devops-use-promise.js',
-                        other: 'other',
-                        fake_var: {
-                            'type': 'fake_type',
-                            'value': 'fake_value'
-                        },
-                        outVar_1: {
+                        'other': 'other',
+                        'enable_test': true,
+                        'group': 'Tencent ivweb team',
+                        'author': 'helinjiang',
+                        'email': 'onehlj@qq.com',
+                        'count': 10086,
+                        'outVar_1': {
                             'type': 'string',
-                            'value': 'testaaaaa'
+                            'value': 'Execute file or code and return the result',
+                            'path': './path/file'
                         },
-                        outVar_2: {
+                        'outVar_2': {
                             'type': 'artifact',
                             'value': [
                                 'file_path_1',
                                 'file_path_2'
-                            ]
-                        },
-                        outVar_3: {
-                            'type': 'report',
-                            'reportType': '',
-                            'label': '',
-                            'path': '',
-                            'target': '',
-                            'url': ''
+                            ],
+                            'info': {
+                                'field1': 'I am field1',
+                                'field2': 'I am field2',
+                                'list': [
+                                    'abc',
+                                    123
+                                ]
+                            }
                         }
                     });
                 });
