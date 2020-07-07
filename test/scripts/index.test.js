@@ -195,5 +195,32 @@ describe('./index.js', function () {
                     expect(data).to.equal('hello, execute-it! I am 123');
                 });
         });
+
+        it('check CommonJS module with package', function () {
+            this.timeout(2*60*1000)
+            const code = `
+const _ = require('lodash')
+module.exports = function (name, opts) {
+    return 'hello, ' + name + '! I am ' + JSON.stringify(_.merge({desc:'haha'},opts));
+};
+            `;
+            const packageContent = `
+{
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
+            `
+
+            return executeIt.evaluateJSSourceTextModule({
+                sourceText:code,
+                packageContent
+            }, 'execute-it', {
+                age: 123
+            })
+              .then((data) => {
+                  expect(data).to.equal('hello, execute-it! I am {"desc":"haha","age":123}');
+              });
+        });
     });
 });
