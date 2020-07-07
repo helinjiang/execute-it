@@ -1,6 +1,6 @@
 {
   "name": "execute-it",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Execute file or code and return the result",
   "main": "lib/index.js",
   "scripts": {
