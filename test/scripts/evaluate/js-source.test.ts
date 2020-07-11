@@ -1,9 +1,21 @@
+import path from 'path';
 import 'mocha';
 import {expect} from 'chai';
 
-import {evaluateJSSourceTextModule} from '../../../src/evaluate/js-source';
+import {
+  evaluateJSSourceTextModule,
+  EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH,
+} from '../../../src/evaluate/js-source';
 
 describe('./evaluate/js-source.ts', function () {
+  describe('常量', function () {
+    it('check EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH', function () {
+      expect(EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH).to.be.equal(
+        path.join(__dirname, '../../../tmp'),
+      );
+    });
+  });
+
   describe('check evaluateJSSourceTextModule(sourceText, ...props) ', function () {
     it('check CommonJS module', function () {
       const code = `

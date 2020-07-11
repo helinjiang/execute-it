@@ -143,5 +143,16 @@ describe('./index.js', function () {
         });
       });
     });
+
+    it('check read devops.md', function () {
+      return getContent(path.join(__dirname, '../fixtures/devops.md')).catch((e: any) => {
+        expect(e)
+          .to.be.a('Error')
+          .and.have.property(
+            'message',
+            `unknown extname=.md, filePath=${path.join(__dirname, '../fixtures/devops.md')}`,
+          );
+      });
+    });
   });
 });
