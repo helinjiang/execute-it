@@ -1,6 +1,10 @@
-const { exec } = require('child_process');
+import {exec, ExecOptions, ChildProcess} from 'child_process';
 
-function runByExec(command, options) {
+export function runByExec(
+  command: string,
+  options: {cmd?: string} & ExecOptions,
+): Promise<ChildProcess> {
+  // export function runByExec(command: string, options?: any) {
   // console.log('[runByExec] command, options', command, options);
 
   return new Promise((resolve, reject) => {
@@ -18,17 +22,12 @@ function runByExec(command, options) {
       resolve(cmd);
     });
 
-    cmd.stdout.on('data', (data) => {
+    cmd?.stdout?.on('data', data => {
       console.log(`${data}`);
-
     });
 
-    cmd.stderr.on('data', (data) => {
+    cmd?.stderr?.on('data', data => {
       console.error(`${data}`);
     });
   });
 }
-
-module.exports = {
-  runByExec
-};
