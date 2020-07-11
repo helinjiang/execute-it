@@ -222,5 +222,32 @@ module.exports = function (name, opts) {
           expect(data).to.equal('hello, execute-it! I am {"desc":"haha","age":123}');
         });
     });
+
+    it('check CommonJS module with package and return async', function () {
+      this.timeout(2 * 60 * 1000);
+      const code = `
+const axios = require('axios');
+
+module.exports = async function (url) {
+  const res = await axios.get(url);
+  return res.status;
+};
+            `;
+      const packageContent = `
+{
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
+            `;
+
+      return executeIt.evaluateJSSourceTextModule({
+        sourceText: code,
+        packageContent
+      }, 'https://www.qq.com')
+        .then((data) => {
+          expect(data).to.equal(200);
+        });
+    });
   });
 });
