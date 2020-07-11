@@ -23,7 +23,10 @@ interface SourceOpts {
  * @return {Promise}
  * @author linjianghe
  */
-export function evaluateJSSourceTextModule(sourceOpts: SourceOpts, ...props: any[]): Promise<any> {
+export function evaluateJSSourceTextModule(
+  sourceOpts: string | SourceOpts,
+  ...props: any[]
+): Promise<any> {
   let opts: SourceOpts;
   if (sourceOpts && typeof sourceOpts === 'object') {
     opts = sourceOpts;
