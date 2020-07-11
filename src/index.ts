@@ -17,7 +17,7 @@ import {
  * @return {Promise}
  * @author linjianghe
  */
-function getContent(filePath: string, ...props: any[]): Promise<any> {
+export function getContent(filePath: string, ...props: any[]): Promise<any> {
   // 文件后缀名
   const extname = path.extname(filePath);
 
@@ -34,7 +34,15 @@ function getContent(filePath: string, ...props: any[]): Promise<any> {
   }
 }
 
-module.exports = {
+export {
+  execJavascript,
+  execJson,
+  execYaml,
+  evaluateJSSourceTextModule,
+  EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH,
+};
+
+export default {
   getContent,
   execJavascript,
   execJson,
