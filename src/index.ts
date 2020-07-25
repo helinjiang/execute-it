@@ -27,6 +27,7 @@ export function getContent(filePath: string, ...props: any[]): Promise<any> {
       return execJavascript.read(filePath, ...props);
     case '.json':
       return execJson.read(filePath);
+    case '.yaml':
     case '.yml':
       return execYaml.read(filePath);
     default:
