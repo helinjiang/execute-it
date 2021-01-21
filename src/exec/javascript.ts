@@ -45,4 +45,4 @@ export function read(filePath: string, ...props: any[]): Promise<any> {
   });
 }
 
-export default {read, getResult};
+export default { read, getResult };

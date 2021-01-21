@@ -1,8 +1,8 @@
 import path from 'path';
-import fse from 'fs-extra';
 
-import {read} from '../exec/javascript';
-import {runByExec} from '../run-cmd';
+import { read } from '../exec/javascript';
+import { runByExec } from '../run-cmd';
+import { outputFileSync, removeSync } from '../fs-utils';
 
 export const EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH = path.join(__dirname, `../../tmp`);
 
@@ -42,9 +42,9 @@ export function evaluateJSSourceTextModule(
 
   return new Promise((resolve, reject) => {
     if (opts.packageContent) {
-      fse.outputFileSync(tmpPackageFilePath, opts.packageContent);
+      outputFileSync(tmpPackageFilePath, opts.packageContent);
 
-      runByExec(`${opts.NPM || 'npm'} install`, {cwd: tmpSavePath})
+      runByExec(`${opts.NPM || 'npm'} install`, { cwd: tmpSavePath })
         .then(data => {
           resolve(data);
         })
@@ -57,20 +57,20 @@ export function evaluateJSSourceTextModule(
   })
     .then(() => {
       // 保存
-      fse.outputFileSync(tmpSaveFilePath, opts.sourceText);
+      outputFileSync(tmpSaveFilePath, opts.sourceText);
 
       // 获取执行结果
       return read(tmpSaveFilePath, ...props);
     })
     .then(data => {
       // 清理
-      fse.removeSync(tmpSavePath);
+      removeSync(tmpSavePath);
 
       return data;
     })
     .catch(err => {
       // 清理
-      fse.removeSync(tmpSavePath);
+      removeSync(tmpSavePath);
 
       return Promise.reject(err);
     });

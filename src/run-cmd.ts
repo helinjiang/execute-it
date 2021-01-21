@@ -1,8 +1,8 @@
-import {exec, ExecOptions, ChildProcess} from 'child_process';
+import { exec, ExecOptions, ChildProcess } from 'child_process';
 
 export function runByExec(
   command: string,
-  options: {cmd?: string} & ExecOptions,
+  options: { cmd?: string } & ExecOptions,
 ): Promise<ChildProcess> {
   // export function runByExec(command: string, options?: any) {
   // console.log('[runByExec] command, options', command, options);
