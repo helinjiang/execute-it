@@ -14,4 +14,4 @@ export function read(filePath: string): Promise<any> {
   });
 }
 
-export default {read};
+export default { read };

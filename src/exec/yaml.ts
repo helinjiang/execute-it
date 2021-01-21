@@ -16,4 +16,4 @@ export function read(filePath: string): Promise<any> {
   });
 }
 
-export default {read, yaml};
+export default { read, yaml };
