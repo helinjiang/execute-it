@@ -32,9 +32,11 @@ executeIt.getContent(path.join(__dirname, '../fixtures/devops-use-function.js'),
 ### evaluateJSSourceTextModule(sourceOpts, ...props)
 
 - `sourceOpts`，参数，如果为字符串则为源码，等效于 `sourceOpts.sourceText`
-- `sourceOpts.sourceText`，js module 源码，必填
-- `sourceOpts.packageContent`，package.json的内容，主要是依赖
-- `sourceOpts.NPM`，默认值为 `npm`，你也可以指定为 `cnpm` 等，主要是搭配 `sourceOpts.packageContent` 使用，用于安装依赖
+  - `sourceOpts.sourceText`，js module 源码，必填
+  - `sourceOpts.packageContent`，package.json 的内容，若 `sourceText` 有依赖第三方包，则需要配置进来
+  - `sourceOpts.NPM`，默认值为 `npm`，你也可以指定为 `cnpm` 等，主要是搭配 `sourceOpts.packageContent` 使用，用于安装依赖
+  - `sourceOpts.doNotClear`，是否在执行完成之后不要清理临时目录，默认值为 `false`，即会自动清理临时文件
+  - `sourceOpts.tmpDir`，默认值为本组件下的 `tmp` 目录，例如 `[xxx]/node_modules/execute-it/tmp`
 - `...props`，透传给 js module 的参数
 
 

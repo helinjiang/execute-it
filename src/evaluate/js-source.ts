@@ -10,6 +10,8 @@ interface SourceOpts {
   sourceText: string;
   packageContent?: string;
   NPM?: string;
+  doNotClear?: boolean;
+  tmpDir?: string;
 }
 
 /**
@@ -36,7 +38,10 @@ export function evaluateJSSourceTextModule(
     };
   }
 
-  const tmpSavePath = path.join(EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH, `t_${Date.now()}`);
+  const tmpSavePath = path.join(
+    opts.tmpDir || EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH,
+    `t_${Date.now()}`,
+  );
   const tmpSaveFilePath = path.join(tmpSavePath, `./code.js`);
   const tmpPackageFilePath = path.join(tmpSavePath, `./package.json`);
 
@@ -63,14 +68,18 @@ export function evaluateJSSourceTextModule(
       return read(tmpSaveFilePath, ...props);
     })
     .then(data => {
-      // 清理
-      removeSync(tmpSavePath);
+      if (!opts.doNotClear) {
+        // 清理
+        removeSync(tmpSavePath);
+      }
 
       return data;
     })
     .catch(err => {
-      // 清理
-      removeSync(tmpSavePath);
+      if (!opts.doNotClear) {
+        // 清理
+        removeSync(tmpSavePath);
+      }
 
       return Promise.reject(err);
     });
