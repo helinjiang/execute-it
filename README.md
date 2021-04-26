@@ -2,20 +2,22 @@
 
 执行文件并返回结果，目前已支持 `.js`、`.yml`、`.yaml` 和 `.json` 格式的文件，同时还支持执行指定的源代码。
 
-## 安装
+## 1. 安装
 
 ```bash
 $ npm install execute-it
 ```
 
-## API
+## 2. API
 
-### getContent(filePath, ...props)
+### 2.1 getContent(filePath, ...props)
 
-- `filePath`，文件的绝对路径，支持 `.js`、`.yml` 和 `.json` 格式
-- `...props`，当 `filePath` 为 `.js` 文件，且该文件导出的是一个方法，则会将其透传给方法
+通过 `require(filePath)` 的方式，**执行**并获取文件中的内容，而不是原始文件的内容。
 
-通过 `require` 的方式，执行并获取文件中的内容。注意，该方法返回的是 `Promise`。
+> 注意，该方法返回的是 `Promise` 。
+
+- `filePath`，文件的绝对路径，支持 `.js`、`.yml`、`.yaml` 和 `.json` 格式
+- `...props`，当 `filePath` 为 `.js` 文件，且该文件按照 CommonJS 规范导出的是一个方法，则会将其透传给该方法
 
 ```javascript
 const executeIt = require('execute-it');
@@ -29,9 +31,13 @@ executeIt.getContent(path.join(__dirname, '../fixtures/devops-use-function.js'),
     });
 ```
 
-### evaluateJSSourceTextModule(sourceOpts, ...props)
+### 2.2 evaluateJSSourceTextModule(sourceOpts, ...props)
 
-- `sourceOpts`，参数，如果为字符串则为源码，等效于 `sourceOpts.sourceText`
+执行 js 源码文本，获得结果并返回。
+
+> 注意，该方法返回的是 `Promise` 。
+
+- `sourceOpts`，源码参数，如果为字符串则为源码，等效于 `sourceOpts.sourceText`
   - `sourceOpts.sourceText`，js module 源码，必填
   - `sourceOpts.packageContent`，package.json 的内容，若 `sourceText` 有依赖第三方包，则需要配置进来
   - `sourceOpts.NPM`，默认值为 `npm`，你也可以指定为 `cnpm` 等，主要是搭配 `sourceOpts.packageContent` 使用，用于安装依赖
@@ -40,7 +46,7 @@ executeIt.getContent(path.join(__dirname, '../fixtures/devops-use-function.js'),
 - `...props`，透传给 js module 的参数
 
 
-场景一：如果 js 模块不依赖第三方包，则直接传递符合 CommonJS 规范的源码
+#### 2.2.1 场景一：如果 js 模块不依赖第三方包，则直接传递符合 CommonJS 规范的源码
 
 ```javascript
 import { evaluateJSSourceTextModule} from 'execute-it';
@@ -57,7 +63,7 @@ evaluateJSSourceTextModule(code, 'execute-it', { age: 123}).then(data => {
 });
 ```
 
-场景二：如果 js 模块依赖第三方包，则需要传递依赖
+#### 2.2.2 场景二：如果 js 模块依赖第三方包，则需要传递依赖
 
 ```javascript
 import { evaluateJSSourceTextModule} from 'execute-it';
@@ -84,7 +90,7 @@ evaluateJSSourceTextModule({ sourceText, packageContent}, 'execute-it', { age: 1
 ```
 
 
-场景三：支持异步
+#### 2.2.3 场景三：支持异步
 
 ```javascript
 import { evaluateJSSourceTextModule} from 'execute-it';
