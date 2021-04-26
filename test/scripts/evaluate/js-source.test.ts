@@ -1,10 +1,15 @@
+import fs from 'fs';
 import path from 'path';
 import 'mocha';
-import {expect} from 'chai';
+import { expect } from 'chai';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import nodeFsUtils from 'nodejs-fs-utils';
 
 import {
-  evaluateJSSourceTextModule,
   EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH,
+  evaluateJSSourceTextModule,
 } from '../../../src/evaluate/js-source';
 
 describe('./evaluate/js-source.ts', function () {
@@ -65,16 +70,18 @@ module.exports = function (name, opts) {
       this.timeout(2 * 60 * 1000);
       const code = `
 const axios = require('axios');
+const got = require('got');
 
 module.exports = async function (url) {
   const res = await axios.get(url);
-  return res.status;
+  return res.status + (typeof got);
 };
             `;
       const packageContent = `
 {
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "got": "^11.8.2"
   }
 }
             `;
@@ -86,8 +93,36 @@ module.exports = async function (url) {
         },
         'https://www.qq.com',
       ).then(data => {
-        expect(data).to.equal(200);
+        expect(data).to.equal('200function');
       });
+    });
+
+    it('check doNotClear and tmpDir', function () {
+      const code = `
+ module.exports = function (name, opts) {
+    return 'hello, ' + name + '! I am ' + opts.age;
+};
+            `;
+
+      const tmpDir = path.join(EVALUATE_JS_SOURCE_TEXT_MODULE_TMP_PATH, 'custom-tmp-dir');
+      return evaluateJSSourceTextModule(
+        {
+          sourceText: code,
+          doNotClear: true,
+          tmpDir: tmpDir,
+        },
+        'execute-it',
+        {
+          age: 123,
+        },
+      )
+        .then(data => {
+          expect(data).to.equal('hello, execute-it! I am 123');
+          expect(fs.existsSync(tmpDir)).to.be.true;
+        })
+        .then(() => {
+          nodeFsUtils.removeSync(tmpDir);
+        });
     });
   });
 });
