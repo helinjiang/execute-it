@@ -117,3 +117,9 @@ evaluateJSSourceTextModule({ sourceText, packageContent}, 'https://www.qq.com').
   console.log(data);
 });
 ```
+
+## 3. 特别说明
+
+### 3.1 如何解析 yaml 文件？
+
+本工具库使用 [js-yaml](https://www.npmjs.com/package/js-yaml) 来解析 `.yml` 和 `.yaml` 文件，**且未做任何二次处理**。因此如果需要了解其对 yaml 的支持和解析的规则，请查看 [js-yaml 文档](https://www.npmjs.com/package/js-yaml) ，也可以体验其 [线上 Demo](http://nodeca.github.io/js-yaml/) 。
